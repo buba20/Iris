@@ -1,14 +1,7 @@
 var expect = require('chai').expect;
-
+var db = require('../../../db');
 describe("Database", function () {
-
-    it('should open connection to database ', function () {
-        var db = require('../../../db');
-        //db.closeConnection();
-    });
-
     it('should create test document', function (done) {
-        var db = require('../../../db');
         var b = new db.models.Board({title: 'asda'});
         b.save(function (err, obj) {
             if (err) {
@@ -16,7 +9,12 @@ describe("Database", function () {
             }
             console.log(obj);
             done();
-
         });
+    });
+    it('should delete test document',function(done){
+        db.models.Board.find({title:'asda'}).remove(function (err) {
+            console.log(err);
+            done();
+        })
     })
 });
