@@ -1,32 +1,22 @@
-var PORT_NUMBER = 51657,
-	MSG_ROUTE_PUBLIC = "This area is public and you're most welcome here :)";
-	MSG_ROUTE_PRIVATE = "This is a private area, get outta here!";
-	MSG_ROUTE_MAIN = "Welcome to main page. Have you tried other locations, like /public and /private ?";
-	MSG_ROUTE_UNKNOWN = "Page not found, sorry.";
-	
+var PORT_NUMBER = 51657;
+
 var http = require("http"),
 	url = require("url");
+
+var router = require("./routes/router");
 	
-var routes = {
-		"/": function() {
-			return MSG_ROUTE_MAIN;
-		},
-		"/public": function() {
-			return MSG_ROUTE_PUBLIC;
-		},
-		"/private": function() {
-			return MSG_ROUTE_PRIVATE;
+var	server = http.createServer(function(request, response) {
+		try {
+			router(request, response);
 		}
-	}
-	server = http.createServer(function(request, response) {
-		var parsedUrl = url.parse(request.url, true),
-			responseFunction = routes["" + parsedUrl.pathname];
-		console.log("Handling request for " + parsedUrl.pathname);
-		if (responseFunction) {
-			response.end(responseFunction());
-		}
-		else {
-			response.end(MSG_ROUTE_UNKNOWN);
+		catch (error) {
+			if (error instanceof URIError) {
+				response.writeHead(404, {'Content-Type': 'text/plain'});
+			}
+			else {
+				response.writeHead(500, {'Content-Type': 'text/plain'});
+			}
+			response.end(error.message);
 		}
 	});
 
