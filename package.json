@@ -1,0 +1,6 @@
+{
+  "name": "our-node-app",
+  "version": "0.0.1",
+  "description": "Our first attempt at writing an app using Node.js, Angular and possibly MondoDB",
+  "dependencies": {}
+}
