@@ -1,12 +1,15 @@
+(function (db) {
 
-var mongoose = require('mongoose'),
-    db = mongoose.connect('mongodb://localhost/test');
+    var mongoose = require('mongoose');
+    var connections;
+    db.openConnection = function(){
+        connections = mongoose.connect('mongodb://localhost/Iris');
+    };
 
-var Cat = mongoose.model('Cat', { name: String });
+    db.closeConnection = function (connection) {
+        connections.connections.forEach(function(c){c.close();});
+    };
 
-var kitty = new Cat({ name: 'Zildjian' });
-
-kitty.save(function (err) {
-    if (err) // ...
-        console.log('meow');
-});
+    //db.openConnection();
+    require('./models')(db);
+}(module.exports));
