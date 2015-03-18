@@ -1,10 +1,10 @@
 var boards = [
     {
-        id: 1,
+        _id: "111111111111",
         name: "Board 1"
     },
     {
-        id: 2,
+        _id: "222222222222222222222222",
         name: "Board 2"
     }
 ];
@@ -14,7 +14,7 @@ var boardController = function() {
         return boards;
     };
     this.getBoardById = function(id) {
-        return boards.filter(function(board) { return board.id === id; });
+        return boards.filter(function(board) { return board._id === id; });
     };
 
     return this;

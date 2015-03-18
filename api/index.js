@@ -11,12 +11,17 @@ app.get("/api", function (req, res) {
     res.json();
 });
 
+// /api/board
+// /api/board/
 app.get(/^\/api\/board(\/){0,1}$/, function (req, res) {
     res.json(boardController.getAllBoards());
 });
 
-app.get(/^\/api\/board\/(\d)+\/{0,1}$/, function (req, res) {
-    res.json(boardController.getBoardById(parseInt(req.params[0])));
+// /api/board/:id
+// /api/board/:id/
+app.get(/^\/api\/board\/([a-zA-Z0-9]{12}|[a-zA-Z0-9]{24})\/{0,1}$/, function (req, res) {
+    console.log(req.params);
+    res.json(boardController.getBoardById(req.params[0]));
 });
 
 module.exports = function(portNumber){
