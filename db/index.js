@@ -7,5 +7,5 @@
         database.connections.forEach(function(c){c.close();});
     };
 
-    require('./models')(db);
+    db.models = require('./models');
 }(module.exports));
