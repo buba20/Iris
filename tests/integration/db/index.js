@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var db = require('../../../db');
+var db = require('../../../db')();
 describe("Database", function () {
     var boardName = 'TestBoard';
     it('should create test document', function (done) {

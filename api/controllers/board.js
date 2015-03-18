@@ -1,20 +1,11 @@
-var boards = [
-    {
-        _id: "111111111111",
-        name: "Board 1"
-    },
-    {
-        _id: "222222222222222222222222",
-        name: "Board 2"
-    }
-];
+var db = require("../../db")();
 
 var boardController = function() {
-    this.getAllBoards = function() {
-        return boards;
+    this.getAllBoards = function(next) {
+        db.models.Board.find().select("_id title").exec(next);
     };
-    this.getBoardById = function(id) {
-        return boards.filter(function(board) { return board._id === id; });
+    this.getBoardById = function(id, next) {
+        db.models.Board.findOne({ _id: id }).exec(next);
     };
 
     return this;

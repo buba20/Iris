@@ -1,11 +1,10 @@
-(function (db) {
+var mongoose = require('mongoose');
+var database = mongoose.connect('mongodb://localhost/Iris');
 
-    var mongoose = require('mongoose');
-    var database = mongoose.connect('mongodb://localhost/Iris');
-    database.connection.on('error',console.error.bind(console,'database error: '));
-    db.closeConnection = function (connection) {
-        database.connections.forEach(function(c){c.close();});
-    };
+database.connection.on('error',console.error.bind(console,'database error: '));
 
-    db.models = require('./models');
-}(module.exports));
+module.exports = function() {
+    this.models = require('./models')();
+
+    return this;
+};
