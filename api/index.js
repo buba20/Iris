@@ -1,9 +1,9 @@
-var express = require("express");
-var app = express();
+var express = require("express"),
+    path = require("path"),
+    publicDirectoryPath = path.join(__dirname,"../public"),
+    app = express();
 
-app.get("/", function (req, res) {
-    res.end("asdas");
-});
+app.use("/",express.static(publicDirectoryPath));
 
 app.get("/api", function (req, res) {
     res.json();
@@ -12,7 +12,6 @@ app.get("/api", function (req, res) {
 app.get("/api/:id", function (req, res) {
     res.json({name:"asda"});
 });
-
 
 module.exports = function(portNumber){
 
