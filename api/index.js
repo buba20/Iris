@@ -3,14 +3,20 @@ var express = require("express"),
     publicDirectoryPath = path.join(__dirname,"../public"),
     app = express();
 
+var boardController = require("./controllers/board");
+
 app.use("/",express.static(publicDirectoryPath));
 
 app.get("/api", function (req, res) {
     res.json();
 });
 
-app.get("/api/:id", function (req, res) {
-    res.json({name:"asda"});
+app.get(/^\/api\/board(\/){0,1}$/, function (req, res) {
+    res.json(boardController.getAllBoards());
+});
+
+app.get(/^\/api\/board\/(\d)+\/{0,1}$/, function (req, res) {
+    res.json(boardController.getBoardById(parseInt(req.params[0])));
 });
 
 module.exports = function(portNumber){
