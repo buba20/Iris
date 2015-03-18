@@ -1,18 +1,8 @@
-var expect = require('chai').expect;
-var db = require('../../../db')();
+var expect = require("chai").expect;
+var db = require('../../../db');
 describe("Database", function () {
-    var boardName = 'TestBoard';
     it('should create test document', function (done) {
-
-        var b = new db.models.Board({
-            title: boardName,
-            regions: [new db.models.Region({
-                title: 'Test region',
-                notes: [new db.models.Note({content: 'test note'})]
-            })]
-        });
-
-
+        var b = new db.models.Board({title: 'asda'});
         b.save(function (err, obj) {
             if (err) {
                 console.log(err);
