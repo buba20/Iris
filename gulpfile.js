@@ -16,8 +16,14 @@ gulp.task("copyJquery",function(){
 });
 
 gulp.task("copyAngular", function () {
-    gulp.src(["node_modules/angular/angular.js","node_modules/angular/angular.min.js","node_modules/angular/angular.min.js.map"])
-        .pipe(gulp.dest("public/js/lib/angular"));
+    gulp.src([
+        "node_modules/angular/angular.js",
+        "node_modules/angular/angular.min.js",
+        "node_modules/angular/angular.min.js.map",
+        "node_modules/angular-route/angular-route.js",
+        "node_modules/angular-route/angular-route.min.js",
+        "node_modules/angular-route/angular-route.min.js.map"
+    ]).pipe(gulp.dest("public/js/lib/angular"));
 });
 
 gulp.task("copyBootstrap",function(){
