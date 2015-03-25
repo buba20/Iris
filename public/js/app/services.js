@@ -18,7 +18,9 @@ angular.module("IrisApp.Services", ["IrisApp.Config"])
         }
 
         function get(id) {
-            return $http.get(urls.boardUrl + "/" + id)
+            var url = id ? urls.boardUrl + "/" + id : urls.boardUrl;
+
+            return $http.get(url)
                 .error(function (data) {
                     console.error(data);
                 });
