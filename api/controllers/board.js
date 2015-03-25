@@ -1,16 +1,30 @@
+"use strict";
 var db = require("../../db")();
 
-var boardController = function() {
-    this.getAllBoards = function(next) {
+var boardController = function () {
+
+    function getAllBoards(next) {
         db.models.Board.find().select("_id title").exec(next);
-    };
-    this.getBoardById = function(id, next) {
-        db.models.Board.findOne({ _id: id }).exec(next);
-    };
-    this.createNew = function (next) {
+    }
+
+    function getBoardById(id, next) {
+        db.models.Board.findOne({_id: id}).exec(next);
+    }
+
+    function createNew(next) {
         (new db.models.Board({title: "untitled"})).save(next);
+    }
+
+    function update(board, next) {
+        db.models.Board.findOneAndUpdate({_id: board._id}, board, next);
+    }
+
+    return {
+        getAllBoards: getAllBoards,
+        getBoardById: getBoardById,
+        createNew: createNew,
+        update: update
     };
-    return this;
 };
 
 module.exports = boardController;

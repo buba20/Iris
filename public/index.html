@@ -50,6 +50,27 @@
     </div>
 </script>
 
+<script id="board.html" type="text/ng-template">
+    <div>
+        <form class="form-inline">
+            <div class="form-group">
+                <input class="form-control" ng-model="board.title"/>
+                <button class="btn btn-warning" ng-click="updateBoard()"><span class="glyphicon glyphicon-edit"></span>
+                    Update
+                </button>
+                <button class="btn btn-danger" ng-click="deleteBoard()"><span class="glyphicon glyphicon-remove"></span>
+                    Delete
+                </button>
+                <button class="btn btn-primary" ng-click="newRegion()">
+                    <sapn class="glyphicon glyphicon-plus"></sapn>
+                    Region
+                </button>
+            </div>
+        </form>
+
+    </div>
+</script>
+
 <!--app files -->
 <script src="js/app/services.js"></script>
 <script src="js/app/controllers.js"></script>
