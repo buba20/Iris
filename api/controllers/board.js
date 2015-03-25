@@ -7,8 +7,10 @@ var boardController = function() {
     this.getBoardById = function(id, next) {
         db.models.Board.findOne({ _id: id }).exec(next);
     };
-
+    this.createNew = function (next) {
+        (new db.models.Board({title: "untitled"})).save(next);
+    };
     return this;
 };
 
-module.exports = boardController();
+module.exports = boardController;

@@ -1,5 +1,6 @@
-angular.module("IrisApp", ["ngRoute", "home"]).config(["$routeProvider", function ($routeProvider) {
-    $routeProvider.otherwise({
-        redirectTo: "/"
-    });
-}]);
+angular.module("IrisApp", ["ngRoute", "IrisApp.Controllers"])
+    .config(["$routeProvider", function ($routeProvider) {
+        $routeProvider.otherwise({
+            redirectTo: "/"
+        });
+    }]);

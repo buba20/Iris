@@ -3,13 +3,9 @@ var express = require("express"),
     publicDirectoryPath = path.join(__dirname,"../public"),
     app = express();
 
-var boardController = require("./controllers/board");
+var boardController = require("./controllers/board")();
 
 app.use("/",express.static(publicDirectoryPath));
-
-app.get("/api", function (req, res) {
-    res.json();
-});
 
 // /api/board
 // /api/board/
@@ -23,6 +19,12 @@ app.get(/^\/api\/board(\/){0,1}$/, function (req, res) {
 // /api/board/:id/
 app.get(/^\/api\/board\/([a-zA-Z0-9]{12}|[a-zA-Z0-9]{24})\/{0,1}$/, function (req, res) {
     boardController.getBoardById(req.params[0], function(err, data) {
+        res.json(data);
+    });
+});
+
+app.put("/api/board/new", function (req, res) {
+    boardController.createNew(function (err, data) {
         res.json(data);
     });
 });
