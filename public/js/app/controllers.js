@@ -16,7 +16,6 @@ angular.module("IrisApp.Controllers", ["ngRoute", "IrisApp.Services", "ui.bootst
     controller("boardController", ["$scope", "$routeParams", "BoardService", "$modal", function ($scope, $routeParams, boardService, $modal) {
 
         var id = $routeParams.id;
-        $scope.items = ['item1', 'item2', 'item3'];
 
         boardService.get(id).success(function (board) {
             $scope.board = board;
@@ -28,23 +27,19 @@ angular.module("IrisApp.Controllers", ["ngRoute", "IrisApp.Services", "ui.bootst
 
         $scope.deleteBoard = function () {
             $modal.open({
-                templateUrl: "myModalContent.html",
+                templateUrl: "confirmDeleteModal.html",
                 controller: "ModalInstanceCtrl",
                 resolve: {
-                    items: function () {
-                        return $scope.items;
-                    },
-                    buba: function () {
-                        return "Basa";
-                    }
+                    board: function(){
+                        return $scope.board;}
                 }
             }).result.then(function () {
                     console.log("Ok delete");
                 });
         };
-    }]).controller("ModalInstanceCtrl", function ($scope, $modalInstance) {
-
-        $scope.ok = function () {
+    }]).controller("ModalInstanceCtrl", function ($scope, $modalInstance, board) {
+        $scope.board = board;
+        $scope.yes = function () {
             $modalInstance.close();
         };
 

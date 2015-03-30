@@ -100,20 +100,15 @@
     </div>
 </script>
 
-<script type="text/ng-template" id="myModalContent.html">
+<script type="text/ng-template" id="confirmDeleteModal.html">
     <div class="modal-header">
-        <h3 class="modal-title">I'm a modal!</h3>
+        <h3 class="modal-title">Deleting <strong>{{board.title}}</strong> board</h3>
     </div>
     <div class="modal-body">
-        <ul>
-            <li ng-repeat="item in items">
-                <a ng-click="selected.item = item">{{ item }}</a>
-            </li>
-        </ul>
-        Selected: <b>{{ selected.item }}</b>
+        Are you sure ?
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-primary" ng-click="yes()">Yes</button>
         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
     </div>
 </script>
