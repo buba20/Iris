@@ -18,6 +18,8 @@
   "browser": true,
   "node": true,
   "globals": {
-    "angular": true
+    "angular": true,
+    "describe": true,
+    "it": true
   }
 }
