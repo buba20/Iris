@@ -19,11 +19,16 @@ var boardController = function () {
         db.models.Board.findOneAndUpdate({_id: board._id}, board, next);
     }
 
+    function deleteBoard(id,next){
+        db.models.Board.findByIdAndRemove(id,next);
+    }
+
     return {
         getAllBoards: getAllBoards,
         getBoardById: getBoardById,
         createNew: createNew,
-        update: update
+        update: update,
+        delete:deleteBoard
     };
 };
 

@@ -41,6 +41,15 @@ app.post("/api/board", jsonParser, function (req, res) {
         res.json(data);
     });
 });
+app.delete("/api/board",jsonParser,function(req,res){
+    boardController.delete(req.body.id,function(err){
+        if(err){
+            console.log(err);
+        }
+        res.end();
+    })
+});
+
 module.exports = function (portNumber) {
 
     var server = app.listen(portNumber || 3000, function () {

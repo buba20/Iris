@@ -34,7 +34,8 @@ angular.module("IrisApp.Controllers", ["ngRoute", "IrisApp.Services", "ui.bootst
                         return $scope.board;}
                 }
             }).result.then(function () {
-                    console.log("Ok delete");
+                    debugger;
+                    boardService.delete(id);
                 });
         };
     }]).controller("ModalInstanceCtrl", function ($scope, $modalInstance, board) {
