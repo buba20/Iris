@@ -41,9 +41,9 @@ app.post("/api/board", jsonParser, function (req, res) {
         res.json(data);
     });
 });
-app.delete("/api/board",jsonParser,function(req,res){
-    boardController.delete(req.body.id,function(err){
-        if(err){
+app.delete("/api/board/:id", function (req, res) {
+    boardController.delete(req.params.id, function (err) {
+        if (err) {
             console.log(err);
         }
         res.end();

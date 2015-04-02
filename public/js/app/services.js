@@ -33,7 +33,7 @@ angular.module("IrisApp.Services", ["IrisApp.Config"])
         }
 
         function deleteBoard(id){
-            return $http.delete(urls.boardUrl,id).error(function(data){
+            return $http.delete(urls.boardUrl+"/"+id).error(function(data){
                 console.error(data);
             });
         }
