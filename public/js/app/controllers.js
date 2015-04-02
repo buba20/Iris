@@ -12,11 +12,25 @@ angular.module("IrisApp.Controllers", ["ngRoute", "IrisApp.Services", "ui.bootst
                 $location.url("/board/" + data._id);
             });
         };
-    }]).
-    controller("boardController", ["$scope", "$routeParams", "BoardService", "$modal", "$location",
-        function ($scope, $routeParams, boardService, $modal, $location) {
-            var id = $routeParams.id;
+    }])
+    .service("boardDelete", ["$modal", "$location", "BoardService",
+        function ($modal, $location, boardService) {
 
+        return function (boardId) {
+
+            $modal.open({
+                templateUrl: "confirmDeleteModal.html",
+                controller: "ModalInstanceCtrl"
+            }).result.then(function () {
+                    boardService.delete(boardId).success(function () {
+                        $location.url("/board/");
+                    });
+                });
+        };
+    }])
+    .controller("boardController", ["$scope", "$routeParams", "BoardService", "boardDelete",
+        function ($scope, $routeParams, boardService, boardDelete) {
+            var id = $routeParams.id;
             boardService.get(id).success(function (board) {
                 $scope.board = board;
             });
@@ -25,23 +39,10 @@ angular.module("IrisApp.Controllers", ["ngRoute", "IrisApp.Services", "ui.bootst
                 boardService.update($scope.board);
             };
 
-            $scope.deleteBoard = function () {
-                $modal.open({
-                    templateUrl: "confirmDeleteModal.html",
-                    controller: "ModalInstanceCtrl",
-                    resolve: {
-                        board: function () {
-                            return $scope.board;
-                        }
-                    }
-                }).result.then(function () {
-                        boardService.delete(id).success(function () {
-                            $location.url("/board/");
-                        });
-                    });
-            };
-        }]).controller("ModalInstanceCtrl", function ($scope, $modalInstance, board) {
-        $scope.board = board;
+            $scope.deleteBoard = boardDelete.bind(this, id);
+
+        }]).controller("ModalInstanceCtrl", function ($scope, $modalInstance) {
+
         $scope.yes = function () {
             $modalInstance.close();
         };
