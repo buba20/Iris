@@ -1,33 +1,37 @@
 "use strict";
-angular.module("IrisApp.Controllers", ["ngRoute", "IrisApp.Services", "ui.bootstrap"])
-    .controller("mainController", ["$scope", "BoardService", "$location", function ($scope, service, $location) {
-        $scope.boards = [];
+angular.module("IrisApp.Controllers",
+    ["ngRoute", "IrisApp.Services", "ui.bootstrap"])
 
-        service.get().success(function (data) {
-            $scope.boards = data;
-        });
+    .controller("mainController", ["$scope", "BoardService", "$location","$rootScope",
+        function ($scope, service, $location, $rootScope) {
+            $scope.boards = [];
 
-        $scope.newBoard = function () {
-            service.createNew().success(function (data) {
-                $location.url("/board/" + data._id);
+            service.get().success(function (data) {
+                $scope.boards = data;
             });
-        };
-    }])
+
+            $scope.newBoard = function () {
+                service.createNew().success(function (data) {
+                    $location.url("/board/" + data._id);
+                    $rootScope.alertCtrl.addAlert("success", "Board saved");
+                });
+            };
+        }])
     .service("boardDelete", ["$modal", "$location", "BoardService",
         function ($modal, $location, boardService) {
 
-        return function (boardId) {
+            return function (boardId) {
 
-            $modal.open({
-                templateUrl: "confirmDeleteModal.html",
-                controller: "ModalInstanceCtrl"
-            }).result.then(function () {
-                    boardService.delete(boardId).success(function () {
-                        $location.url("/board/");
+                $modal.open({
+                    templateUrl: "confirmDeleteModal.html",
+                    controller: "ModalInstanceCtrl"
+                }).result.then(function () {
+                        boardService.delete(boardId).success(function () {
+                            $location.url("/board/");
+                        });
                     });
-                });
-        };
-    }])
+            };
+        }])
     .controller("boardController", ["$scope", "$routeParams", "BoardService", "boardDelete",
         function ($scope, $routeParams, boardService, boardDelete) {
             var id = $routeParams.id;
@@ -41,7 +45,8 @@ angular.module("IrisApp.Controllers", ["ngRoute", "IrisApp.Services", "ui.bootst
 
             $scope.deleteBoard = boardDelete.bind(this, id);
 
-        }]).controller("ModalInstanceCtrl", function ($scope, $modalInstance) {
+        }])
+    .controller("ModalInstanceCtrl", function ($scope, $modalInstance) {
 
         $scope.yes = function () {
             $modalInstance.close();

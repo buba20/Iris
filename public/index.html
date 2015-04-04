@@ -39,6 +39,12 @@
     </div>
 </nav>
 
+<!--alert-->
+<div id="alert">
+    <div ng-controller="AlertDemoCtrl" class="row">
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+    </div>
+</div>
 
 <!--main content-->
 <div class="container-fluid" ng-view>
