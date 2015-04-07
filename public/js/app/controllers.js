@@ -2,7 +2,7 @@
 angular.module("IrisApp.Controllers",
     ["ngRoute", "IrisApp.Services", "ui.bootstrap"])
 
-    .controller("mainController", ["$scope", "BoardService", "$location","$rootScope",
+    .controller("mainController", ["$scope", "BoardService", "$location", "$rootScope",
         function ($scope, service, $location, $rootScope) {
             $scope.boards = [];
 
@@ -32,8 +32,19 @@ angular.module("IrisApp.Controllers",
                     });
             };
         }])
-    .controller("boardController", ["$scope", "$routeParams", "BoardService", "boardDelete",
-        function ($scope, $routeParams, boardService, boardDelete) {
+    .service("regionService", ["$http", function ($http) {
+        return {
+            newRegion: function (boardId) {
+
+                return $http.put("api/regions/new", {boardId: boardId}).error(function (err) {
+                    console.log(err);
+                });
+            }
+        };
+    }])
+    .controller("boardController",
+    ["$scope", "$routeParams", "BoardService", "boardDelete", "regionService",
+        function ($scope, $routeParams, boardService, boardDelete, regionService) {
             var id = $routeParams.id;
             boardService.get(id).success(function (board) {
                 $scope.board = board;
@@ -44,7 +55,11 @@ angular.module("IrisApp.Controllers",
             };
 
             $scope.deleteBoard = boardDelete.bind(this, id);
-
+            $scope.newRegion = function () {
+                regionService.newRegion(id).success(function (region) {
+                    $scope.board.regions.push(region);
+                });
+            };
         }])
     .controller("ModalInstanceCtrl", function ($scope, $modalInstance) {
 

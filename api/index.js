@@ -6,7 +6,8 @@ var express = require("express"),
     bodyParser = require("body-parser"),
     jsonParser = bodyParser.json();
 
-var boardController = require("./controllers/board")();
+var boardController = require("./controllers/board")(),
+    regionController = require("./controllers/region")();
 
 app.use("/", express.static(publicDirectoryPath));
 
@@ -47,7 +48,17 @@ app.delete("/api/board/:id", function (req, res) {
             console.log(err);
         }
         res.end();
-    })
+    });
+});
+
+app.put("/api/regions/new", jsonParser, function (req, res) {
+    regionController.addRegion(req.body.boardId, function (err, itemChanged, region) {
+        if (err) {
+            console.error(err);
+            res.error(err);
+        }
+        res.json(region);
+    });
 });
 
 module.exports = function (portNumber) {
@@ -57,7 +68,7 @@ module.exports = function (portNumber) {
         var host = server.address().address;
         var port = server.address().port;
 
-        console.log("Example app listening at http://%s:%s", host, port)
+        console.log("Example app listening at http://%s:%s", host, port);
 
     });
 };
