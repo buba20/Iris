@@ -1,5 +1,5 @@
-angular.module("IrisApp", ["ngRoute", "IrisApp.Controllers", "ui.bootstrap"])
-    .controller('AlertDemoCtrl', ["$scope", "$rootScope", function ($scope, $rootScope) {
+angular.module("IrisApp", ["ngRoute", "IrisApp.Controllers", "ui.bootstrap", "gridster"])
+    .controller("AlertDemoCtrl", ["$scope", "$rootScope", function ($scope, $rootScope) {
         $scope.alerts = [];
 
         $scope.addAlert = function (type, message) {
