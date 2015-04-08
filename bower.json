@@ -1,0 +1,20 @@
+{
+  "name": "Iris",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/buba20/Iris",
+  "authors": [
+    "Bartosz Szatanik <bszatanik@objectivity.co.uk>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-bootstrap": "~0.12.1"
+  }
+}

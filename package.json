@@ -21,6 +21,7 @@
     "jscs": "^1.11.3"
   },
   "scripts": {
-    "preinstall": "npm install -g mocha"
+    "preinstall": "npm install -g mocha",
+    "postinstall": "bower install"
   }
 }
