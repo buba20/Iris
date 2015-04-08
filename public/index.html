@@ -10,8 +10,7 @@
     <script type="text/javascript" src="js/lib/angular/angular.js"></script>
     <script type="text/javascript" src="js/lib/angular/angular-route.min.js"></script>
     <script type="text/javascript" src="js/lib/angularBootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script type="text/javascript" src="js/lib/angularGridster/angular-gridster.min.js"></script>
-    <!--<script type="text/javascript" src="js/lib/angularBootstrap/ui-bootstrap.min.js"></script>-->
+    <script type="text/javascript" src="js/lib/angular/angular-gridster.min.js"></script>
 
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/bootstrap-theme.css"/>
@@ -106,13 +105,13 @@
             </div>
         </form>
     </div>
-    <!--<div ng-repeat="region in board.regions">-->
+    <div ng-repeat="region in board.regions">
     <div gridster>
         <ul>
             <li gridster-item row="0" col="0" size-x="1" size-y="1"></li>
         </ul>
     </div>
-    <!--</div>-->
+    </div>
 </script>
 
 <script type="text/ng-template" id="confirmDeleteModal.html">

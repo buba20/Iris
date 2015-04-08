@@ -26,7 +26,7 @@ gulp.task("copyAngular", function () {
         "node_modules/angular-route/angular-route.js",
         "node_modules/angular-route/angular-route.min.js",
         "node_modules/angular-route/angular-route.min.js.map",
-        "node_modules/angular-gridster/dist/angular-gridster.min.js"
+        "node_modules/angular-gridster/dist/angular-gridster.min.js"       
     ]).pipe(gulp.dest("public/js/lib/angular"));
 
     //css files
