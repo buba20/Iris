@@ -1,4 +1,4 @@
-
+'use strict';
 var gulp = require("gulp"),
     browserSync = require("browser-sync");
 
@@ -11,19 +11,28 @@ gulp.task("copyIndex", function () {
 });
 
 gulp.task("copyJquery",function(){
-  gulp.src(["node_modules/jquery/dist/*.js","node_modules/jquery/dist/*.map"])
-       .pipe(gulp.dest("public/js/lib/jquery"));
+    gulp.src([
+        "node_modules/jquery/dist/*.js",
+        "node_modules/jquery/dist/*.map"
+    ]).pipe(gulp.dest("public/js/lib/jquery"));
 });
 
 gulp.task("copyAngular", function () {
+    //js files
     gulp.src([
         "node_modules/angular/angular.js",
         "node_modules/angular/angular.min.js",
         "node_modules/angular/angular.min.js.map",
         "node_modules/angular-route/angular-route.js",
         "node_modules/angular-route/angular-route.min.js",
-        "node_modules/angular-route/angular-route.min.js.map"
+        "node_modules/angular-route/angular-route.min.js.map",
+        "node_modules/angular-gridster/dist/angular-gridster.min.js"
     ]).pipe(gulp.dest("public/js/lib/angular"));
+
+    //css files
+    gulp.src([
+        "node_modules/angular-gridster/dist/angular-gridster.min.css"
+    ]).pipe(gulp.dest("public/css"));
 });
 
 gulp.task("copyBootstrap",function(){
@@ -47,19 +56,6 @@ gulp.task("browserSync", function () {
         port: 7000,
         proxy: "http://localhost:3000",
         files: ["public/**"]
-    });
-});
-
-gulp.task("nodemon", function (cb) {
-    return nodemon({
-        script: "index.js",
-        ignore: [
-            "./bower_components/**",
-            "./node_modules/**",
-            "./build/**"
-        ]
-    }).on("start", function () {
-        cb();
     });
 });
 
