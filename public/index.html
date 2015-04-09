@@ -19,12 +19,12 @@
 </head>
 
 <body ng-app="IrisApp">
-<!--Navigation menu-->
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
+    <!--Navigation menu-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -47,7 +47,6 @@
     </div>
 </div>
 
-
 <!--main content-->
 <div class="container-fluid" ng-view>
     Iris
@@ -64,23 +63,28 @@
             <div class="table-responsive">
                 <table class="table table-striped table-hover ">
                     <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="board in boards">
-                        <td style="width: 57px">{{$index + 1}}</td>
-                        <td><a href="#/board/{{board._id}}">{{board.title}}</a></td>
-                        <td style="width: 57px"><a class="btn btn-primary" href="#/board/{{board._id}}"><span
-                                class="glyphicon glyphicon-edit"></span> Edit</a></td>
-                        <td style="width: 57px">
-                            <del-board-btn board-id="{{board._id}}"></del-board-btn>
-                        </td>
-                    </tr>
+                        <tr ng-repeat="board in boards">
+                            <td style="width: 57px">{{$index + 1}}</td>
+                            <td>
+                                <a href="#/board/{{board._id}}">{{board.title}}</a>
+                            </td>
+                            <td style="width: 57px">
+                                <a class="btn btn-primary" href="#/board/{{board._id}}">
+                                    <span class="glyphicon glyphicon-edit"></span> Edit
+                                </a>
+                            </td>
+                            <td style="width: 57px">
+                                <del-board-btn board-id="{{board._id}}"></del-board-btn>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -105,12 +109,35 @@
             </div>
         </form>
     </div>
+    </br>
     <div ng-repeat="region in board.regions">
-    <div gridster>
-        <ul>
-            <li gridster-item row="0" col="0" size-x="1" size-y="1"></li>
-        </ul>
-    </div>
+        <div style="height:25em" class="col-md-6">
+
+        <span>{{region.title}}</span>
+
+
+<div gridster ng-repeat=note in region.notes>
+        <div class="gridster-content" >
+            <ul>
+                <li gridster-item row="0" col="0" size-x="2" size-y="2"><div class="box" >
+                <div class="box-header">
+                    <h3>Note</h3>
+                    <div class="box-header-btns pull-right">
+                        <a title="settings""><i class="glyphicon glyphicon-cog"></i></a>
+                        <a title="Remove widget""><i class="glyphicon glyphicon-trash"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                </div>
+            </div>
+            </li>
+            </ul>
+            </div>
+        </div>
+<div><button class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Dodaj</button></div>
+        
+        </div>
+        
     </div>
 </script>
 
