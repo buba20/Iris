@@ -95,13 +95,13 @@
     <div>
         <form class="form-inline">
             <div class="form-group">
-                <input class="form-control" ng-model="board.title"/>
+                <input required class="form-control" ng-model="board.title"/>
                 <button class="btn btn-warning" ng-click="updateBoard()"><span class="glyphicon glyphicon-edit"></span>
                     Update
                 </button>
                 <del-board-btn board-id="{{board._id}}"></del-board-btn>
                 <button class="btn btn-primary" ng-click="newRegion()">
-                    <sapn class="glyphicon glyphicon-plus"></sapn>
+                    <span class="glyphicon glyphicon-plus"></span>
                     Add region
                 </button>
             </div>
@@ -112,8 +112,9 @@
         <div ng-repeat="region in board.regions">
             <region
                     region="region"
-                    add-region="addRegion"
-                    boardId="board._id"
+                    add-item="addItem"
+                    board-id="board._id" ,
+                    del-region="delRegion"
                     ng-controller="regionController"></region>
         </div>
     </div>
@@ -137,7 +138,7 @@
         <div class="region panel panel-default">
             <div class="panel-heading">
                 <span>{{region.title}}</span>
-                <a href="" ng-click="addRegion()" tooltip="Add item" tooltip-placement="right"><span
+                <a href="" ng-click="addItem(region)" tooltip="Add item" data-tooltip-placement="right"><span
                         class="glyphicon glyphicon-plus-sign"></span></a>
 
                 <div class="pull-right">
@@ -148,11 +149,13 @@
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li>
-                                <a href=""><i class="glyphicon glyphicon-plus"/> Add item</a>
+                                <a href="" ng-click="addRegion(boardId)"><i class="glyphicon glyphicon-plus"></i> Add
+                                    item</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="#"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+                                <a href="" ng-click="delRegion(boardId)"><i class="glyphicon glyphicon-remove"></i>
+                                    Delete</a>
                             </li>
                         </ul>
                     </div>

@@ -51,7 +51,8 @@ directives.directive("region", function () {
         scope: {
             region: "=",
             boardId: "=",
-            addRegion: "="
+            addItem: "=",
+            delRegion: "="
         }
     };
 });

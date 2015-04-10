@@ -108,9 +108,11 @@ angular.module("IrisApp.Controllers",
         };
     })
     .controller("regionController", ["$scope", function ($scope) {
-        $scope.addRegion = function () {
-            console.log(arguments);
-            console.log($scope);
+        $scope.delRegion = function (region, boardId) {
+            console.log("Delete region from board", region, boardId);
+        };
+        $scope.addItem = function (region) {
+            console.log("Add item to region :", region);
         };
     }])
     .config(["$routeProvider", function ($routeProvider) {
