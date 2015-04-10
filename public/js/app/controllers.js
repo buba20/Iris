@@ -113,6 +113,7 @@ angular.module("IrisApp.Controllers",
         };
         $scope.addItem = function (region) {
             console.log("Add item to region :", region);
+            region.notes.push({content: 'asdasda lskj sd kjsd skjl;sd '});
         };
     }])
     .config(["$routeProvider", function ($routeProvider) {

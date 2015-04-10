@@ -56,3 +56,10 @@ directives.directive("region", function () {
         }
     };
 });
+
+directives.directive("note", function () {
+    return {
+        templateUrl: "note.html",
+        transclude: true
+    };
+});

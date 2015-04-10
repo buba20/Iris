@@ -113,13 +113,34 @@
             <region
                     region="region"
                     add-item="addItem"
-                    board-id="board._id" ,
+                    board-id="board._id"
                     del-region="delRegion"
-                    ng-controller="regionController"></region>
+                    ng-controller="regionController">
+                <div ng-repeat="note in region.notes">
+                    <note>
+                        {{note.content}}
+                    </note>
+                </div>
+            </region>
         </div>
     </div>
 </script>
+<script id="note.html" type="text/ng-template">
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="pull-right">
+                    <a href="">
+                        <i class="glyphicon glyphicon-remove" style="top:-8px;right: -11px"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-body" ng-transclude>
 
+            </div>
+        </div>
+    </div>
+</script>
 <script id="confirmDeleteModal.html" type="text/ng-template">
     <div class="modal-header">
         <h3 class="modal-title">Deleting board</h3>
@@ -149,12 +170,13 @@
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li>
-                                <a href="" ng-click="addRegion(boardId)"><i class="glyphicon glyphicon-plus"></i> Add
+                                <a href="" ng-click="addItem(region)"><i class="glyphicon glyphicon-plus"></i> Add
                                     item</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="" ng-click="delRegion(boardId)"><i class="glyphicon glyphicon-remove"></i>
+                                <a href="" ng-click="delRegion(region, boardId)"><i
+                                        class="glyphicon glyphicon-remove"></i>
                                     Delete</a>
                             </li>
                         </ul>
