@@ -1,4 +1,5 @@
-angular.module("IrisApp", ["ngRoute", "IrisApp.Controllers", "ui.bootstrap", "gridster"])
+"use strict";
+angular.module("IrisApp", ["ngRoute", "IrisApp.Controllers", "IrisApp.Directives", "ui.bootstrap", "gridster"])
     .controller("AlertDemoCtrl", ["$scope", "$rootScope", function ($scope, $rootScope) {
         $scope.alerts = [];
 
@@ -23,8 +24,8 @@ angular.module("IrisApp")
         function ($modal, $location, boardService) {
             return {
                 restrict: "E",
-                link: function (scope, element, attrs, controllers) {
-                    element.on('click', function (e) {
+                link: function (scope, element, attrs/*, controllers*/) {
+                    element.on("click", function () {
                         $modal.open({
                             templateUrl: "confirmDeleteModal.html",
                             controller: "ModalInstanceCtrl"
@@ -38,5 +39,19 @@ angular.module("IrisApp")
                     });
                 },
                 templateUrl: "delBtnTmp.html"
-            }
+            };
         }]);
+
+var directives = angular.module("IrisApp.Directives", []);
+directives.directive("region", function () {
+    return {
+        restrict: "E",
+        templateUrl: "regionTmp.html",
+        transclude: true,
+        scope: {
+            region: "=",
+            boardId: "=",
+            addRegion: "="
+        }
+    };
+});

@@ -19,12 +19,12 @@
 </head>
 
 <body ng-app="IrisApp">
-    <!--Navigation menu-->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                aria-expanded="false" aria-controls="navbar">
+<!--Navigation menu-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -48,43 +48,42 @@
 </div>
 
 <!--main content-->
-<div class="container-fluid" ng-view>
-    Iris
-</div>
+<div class="container-fluid" ng-view></div>
 
 <!--Templates -->
 <script id="delBtnTmp.html" type="text/ng-template">
     <button class="btn btn-danger">{{boardId}}<span class="glyphicon glyphicon-remove"></span> Delete
     </button>
 </script>
+
 <script id="home.html" type="text/ng-template">
     <div class="row">
         <div class="col-lg-12">
             <div class="table-responsive">
                 <table class="table table-striped table-hover ">
                     <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="board in boards">
-                            <td style="width: 57px">{{$index + 1}}</td>
-                            <td>
-                                <a href="#/board/{{board._id}}">{{board.title}}</a>
-                            </td>
-                            <td style="width: 57px">
-                                <a class="btn btn-primary" href="#/board/{{board._id}}">
-                                    <span class="glyphicon glyphicon-edit"></span> Edit
-                                </a>
-                            </td>
-                            <td style="width: 57px">
-                                <del-board-btn board-id="{{board._id}}"></del-board-btn>
-                            </td>
-                        </tr>
+                    <tr ng-repeat="board in boards">
+                        <td style="width: 57px">{{$index + 1}}</td>
+                        <td>
+                            <a href="#/board/{{board._id}}">{{board.title}}</a>
+                        </td>
+                        <td style="width: 57px">
+                            <a class="btn btn-primary" href="#/board/{{board._id}}">
+                                <span class="glyphicon glyphicon-edit"></span> Edit
+                            </a>
+                        </td>
+                        <td style="width: 57px">
+                            <del-board-btn board-id="{{board._id}}"></del-board-btn>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -110,38 +109,18 @@
         </form>
     </div>
     </br>
-    <div ng-repeat="region in board.regions">
-        <div style="height:25em" class="col-md-6">
-
-        <span>{{region.title}}</span>
-
-
-<div gridster ng-repeat=note in region.notes>
-        <div class="gridster-content" >
-            <ul>
-                <li gridster-item row="0" col="0" size-x="2" size-y="2"><div class="box" >
-                <div class="box-header">
-                    <h3>Note</h3>
-                    <div class="box-header-btns pull-right">
-                        <a title="settings""><i class="glyphicon glyphicon-cog"></i></a>
-                        <a title="Remove widget""><i class="glyphicon glyphicon-trash"></i></a>
-                    </div>
-                </div>
-                <div class="box-content">
-                </div>
-            </div>
-            </li>
-            </ul>
-            </div>
+    <div class="row">
+        <div ng-repeat="region in board.regions">
+            <region
+                    region="region"
+                    add-region="addRegion"
+                    boardId="board._id"
+                    ng-controller="regionController"></region>
         </div>
-<div><button class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Dodaj</button></div>
-        
-        </div>
-        
     </div>
 </script>
 
-<script type="text/ng-template" id="confirmDeleteModal.html">
+<script id="confirmDeleteModal.html" type="text/ng-template">
     <div class="modal-header">
         <h3 class="modal-title">Deleting board</h3>
     </div>
@@ -151,6 +130,37 @@
     <div class="modal-footer">
         <button class="btn btn-primary" ng-click="yes()">Yes</button>
         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="regionTmp.html">
+    <div class="col-md-6">
+        <div class="region panel panel-default">
+            <div class="panel-heading">
+                <span>{{region.title}}</span>
+                <a href="" ng-click="addRegion()" tooltip="Add item" tooltip-placement="right"><span
+                        class="glyphicon glyphicon-plus-sign"></span></a>
+
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            Actions
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            <li>
+                                <a href=""><i class="glyphicon glyphicon-plus"/> Add item</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body" ng-transclude></div>
+        </div>
     </div>
 </script>
 
