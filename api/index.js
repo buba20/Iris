@@ -65,7 +65,7 @@ app.put("/api/regions/new", jsonParser, function (req, res) {
 app.put("/api/note", jsonParser, function (req, res) {
     noteController.add(req.body.boardId, req.body.regionId, function (err, note) {
         if (err) {
-            console.log(err);
+            //console.log(err);
             res.error(err);
         }
 

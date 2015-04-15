@@ -3,16 +3,21 @@ var db = require("../../db")(),
     boardController = require("./board")();
 
 function addNote(boardId, regionId, next) {
-    boardController.getBoardById(boardId, function (err, board) {
-        board.regions.forEach(function (region) {
-            if (region._id === regionId) {
-                region.notes.push(new db.models.Note());
-                return board.save(next);
-            }
-        });
-        next();
 
-    });
+    var note = new db.models.Note();
+console.log(regionId);
+    db.models.Board.update(
+        {
+            "regions.title": 'untitled'
+        }, {
+            "$push": {"regions.0.notes":note}
+        }, function (err, num) {
+            console.log('query end');
+            console.log('Error', err);
+            console.log('Num', num);
+            next();
+        }
+    )
 }
 
 module.exports = function () {
