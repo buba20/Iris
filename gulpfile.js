@@ -1,6 +1,7 @@
-'use strict';
+"use strict";
 var gulp = require("gulp"),
-    browserSync = require("browser-sync");
+    browserSync = require("browser-sync"),
+    nodemon = require("gulp-nodemon");
 
 
 gulp.task("copyIndex", function () {
@@ -51,7 +52,18 @@ gulp.task("copyBootstrap",function(){
         .pipe(gulp.dest("public/fonts"));
 });
 
-gulp.task("browserSync", function () {
+gulp.task("nodemon", function () {
+    nodemon({
+        script: "index.js",
+        ext: "js css html",
+        env: {
+            "NODE_ENV": "development"
+        },
+        debug: ""
+    });
+});
+
+gulp.task("browserSync", ["nodemon"], function () {
     browserSync({
         port: 7000,
         proxy: "http://localhost:3000",

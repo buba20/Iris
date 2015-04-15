@@ -7,7 +7,8 @@ var express = require("express"),
     jsonParser = bodyParser.json();
 
 var boardController = require("./controllers/board")(),
-    regionController = require("./controllers/region")();
+    regionController = require("./controllers/region")(),
+    noteController = require("./controllers/note")();
 
 app.use("/", express.static(publicDirectoryPath));
 
@@ -61,6 +62,16 @@ app.put("/api/regions/new", jsonParser, function (req, res) {
     });
 });
 
+app.put("/api/note", jsonParser, function (req, res) {
+    noteController.add(req.body.boardId, req.body.regionId, function (err, note) {
+        if (err) {
+            console.log(err);
+            res.error(err);
+        }
+
+        res.json(note);
+    });
+});
 module.exports = function (portNumber) {
 
     var server = app.listen(portNumber || 3000, function () {

@@ -17,9 +17,10 @@
     "chai": "^2.1.2",
     "express": "^4.12.3",
     "gulp": "^3.8.11",
+    "gulp-nodemon": "^2.0.2",
     "jscs": "^1.11.3"
   },
   "scripts": {
     "preinstall": "npm install -g mocha"
-    }
+  }
 }

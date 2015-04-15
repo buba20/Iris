@@ -97,6 +97,18 @@ angular.module("IrisApp.Controllers",
                 });
             };
         }])
+    .controller("regionController", ["$scope", "$http", function ($scope, $http) {
+        $scope.delRegion = function (region, boardId) {
+            console.log("Delete region from board", region, boardId);
+        };
+        $scope.addItem = function (region, boardId) {
+            $http.put("api/note", {boardId: boardId, regionId: region._id}).error(function (data) {
+                console.error(data);
+            }).success(function (note) {
+                region.notes.push(note);
+            });
+        };
+    }])
     .controller("ModalInstanceCtrl", function ($scope, $modalInstance) {
 
         $scope.yes = function () {
@@ -107,15 +119,6 @@ angular.module("IrisApp.Controllers",
             $modalInstance.dismiss("cancel");
         };
     })
-    .controller("regionController", ["$scope", function ($scope) {
-        $scope.delRegion = function (region, boardId) {
-            console.log("Delete region from board", region, boardId);
-        };
-        $scope.addItem = function (region) {
-            console.log("Add item to region :", region);
-            region.notes.push({content: 'asdasda lskj sd kjsd skjl;sd '});
-        };
-    }])
     .config(["$routeProvider", function ($routeProvider) {
         $routeProvider.when("/", {
             controller: "mainController",

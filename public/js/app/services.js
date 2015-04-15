@@ -3,7 +3,8 @@ angular.module("IrisApp.Config", [])
     .factory("Urls", function () {
         return {
             newBoardUrl: "api/board/new",
-            boardUrl: "api/board"
+            boardUrl: "api/board",
+            regionUrl: "api/region"
         };
     });
 
@@ -32,8 +33,8 @@ angular.module("IrisApp.Services", ["IrisApp.Config"])
             });
         }
 
-        function deleteBoard(id){
-            return $http.delete(urls.boardUrl+"/"+id).error(function(data){
+        function deleteBoard(id) {
+            return $http.delete(urls.boardUrl + "/" + id).error(function (data) {
                 console.error(data);
             });
         }
@@ -42,6 +43,6 @@ angular.module("IrisApp.Services", ["IrisApp.Config"])
             createNew: createNew,
             get: get,
             update: update,
-            delete:deleteBoard
+            delete: deleteBoard
         };
     }]);

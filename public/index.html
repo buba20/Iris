@@ -159,7 +159,7 @@
         <div class="region panel panel-default">
             <div class="panel-heading">
                 <span>{{region.title}}</span>
-                <a href="" ng-click="addItem(region)" tooltip="Add item" data-tooltip-placement="right"><span
+                <a href="" ng-click="addItem(region,boardId)" tooltip="Add item" data-tooltip-placement="right"><span
                         class="glyphicon glyphicon-plus-sign"></span></a>
 
                 <div class="pull-right">
@@ -170,7 +170,8 @@
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li>
-                                <a href="" ng-click="addItem(region)"><i class="glyphicon glyphicon-plus"></i> Add
+                                <a href="" ng-click="addItem(region,boardId)"><i class="glyphicon glyphicon-plus"></i>
+                                    Add
                                     item</a>
                             </li>
                             <li class="divider"></li>
