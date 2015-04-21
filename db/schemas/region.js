@@ -5,6 +5,6 @@ var regionSchema = mongoose.Schema({
     title: {
         type: String
     },
-    notes:[schemas.note]
+    notes: {}
 });
 module.exports = regionSchema;

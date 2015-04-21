@@ -1,6 +1,4 @@
-
-
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var noteSchema = mongoose.Schema({
     content:{
         type:String
