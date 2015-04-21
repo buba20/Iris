@@ -1,6 +1,7 @@
 var expect = require("chai").expect;
 var db = require('../../../db');
 describe("Database", function () {
+
     it('should create test document', function (done) {
         var b = new db.models.Board({title: 'asda'});
         b.save(function (err, obj) {
@@ -18,4 +19,5 @@ describe("Database", function () {
             done();
         });
     });
+
 });

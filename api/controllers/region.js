@@ -8,7 +8,7 @@ function addRegion(boardId, next) {
         if (board.regions === undefined || board.regions === null) {
             board.regions = [];
         }
-        board.regions.push(new db.models.Region({title: "untitled"}));
+        board.regions.push(new db.models.Region({title: "untitled",notes:{}}));
         board.save(function (err, itemChanged) {
             if (err) {
                 next(err, itemChanged);

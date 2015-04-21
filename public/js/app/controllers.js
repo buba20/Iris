@@ -34,7 +34,6 @@ angular.module("IrisApp.Controllers",
     .service("regionService", ["$http", function ($http) {
         return {
             newRegion: function (boardId) {
-
                 return $http.put("api/regions/new", {boardId: boardId}).error(function (err) {
                     console.log(err);
                 });
@@ -106,6 +105,7 @@ angular.module("IrisApp.Controllers",
                 console.error(data);
             }).success(function (note) {
                 console.log(note);
+                if(region.notes === undefined){ region.notes = {};}
                 region.notes[note._id] = note;
             });
         };
