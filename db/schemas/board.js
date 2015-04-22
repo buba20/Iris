@@ -1,10 +1,12 @@
-var mongoose = require("mongoose");
-
+var mongoose = require("mongoose"),
+    regionSchema = require("../schemas/region"),
+    noteSchema = require("../schemas/note");
 var boardSchema = mongoose.Schema({
     title: {
         type: String
     },
-    regions: [{}]
+    regions: [regionSchema],
+    notes:[noteSchema]
 });
 
 module.exports = boardSchema;

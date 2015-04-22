@@ -104,9 +104,7 @@ angular.module("IrisApp.Controllers",
             $http.put("api/note", {boardId: boardId, regionId: region._id}).error(function (data) {
                 console.error(data);
             }).success(function (note) {
-                console.log(note);
-                if(region.notes === undefined){ region.notes = {};}
-                region.notes[note._id] = note;
+                region.notes.push(note);
             });
         };
     }])

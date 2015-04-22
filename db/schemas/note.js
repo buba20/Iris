@@ -1,7 +1,8 @@
 var mongoose = require("mongoose");
 var noteSchema = mongoose.Schema({
-    content:{
-        type:String
-    }
+    content: {
+        type: String
+    },
+    regionId: String
 });
 module.exports = noteSchema;

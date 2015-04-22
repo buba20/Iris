@@ -109,7 +109,7 @@
     </div>
     </br>
     <div class="row">
-        <div ng-repeat="region in board.regions">
+        <div ng-repeat="region in board.regions track by $index">
             <region
                     region="region"
                     add-item="addItem"
@@ -130,7 +130,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="pull-right">
-                    <a href="">
+                    <a href="" ng-click="delNote(boardId)">
                         <i class="glyphicon glyphicon-remove" style="top:-8px;right: -11px"></i>
                     </a>
                 </div>
