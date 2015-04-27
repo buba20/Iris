@@ -107,6 +107,14 @@ angular.module("IrisApp.Controllers",
                 region.notes.push(note);
             });
         };
+        $scope.delNote = function (boardId, note) {
+            $http.delete("api/note/" + boardId + "/" + note._id)
+                .error(function (data) {
+                    console.error(data);
+                }).success(function (data) {
+                    console.log("deleted");
+                });
+        }
     }])
     .controller("ModalInstanceCtrl", function ($scope, $modalInstance) {
 
