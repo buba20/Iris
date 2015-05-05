@@ -115,12 +115,8 @@
                     add-item="addItem"
                     board-id="board._id"
                     del-region="delRegion"
+                    del-note="delNote"
                     ng-controller="regionController">
-                <div ng-repeat="note in region.notes">
-                    <note>
-                        {{note.content}}
-                    </note>
-                </div>
             </region>
         </div>
     </div>
@@ -130,12 +126,12 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="pull-right">
-                    <a href="" ng-click="delNote(boardId)">
+                    <a href="" ng-click="delNote(boardId,note)">
                         <i class="glyphicon glyphicon-remove" style="top:-8px;right: -11px"></i>
                     </a>
                 </div>
             </div>
-            <div class="panel-body" ng-transclude>
+            <div class="panel-body">
 
             </div>
         </div>
@@ -184,7 +180,11 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-body" ng-transclude></div>
+            <div class="panel-body">
+                <div ng-repeat="note in region.notes">
+                    <note del-note="delNote" board-id="boardId" note="note">{{note.content}}</note>
+                </div>
+            </div>
         </div>
     </div>
 </script>

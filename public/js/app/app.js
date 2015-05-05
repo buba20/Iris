@@ -52,14 +52,21 @@ directives.directive("region", function () {
             region: "=",
             boardId: "=",
             addItem: "=",
-            delRegion: "="
+            delRegion: "=",
+            delNote: "="
         }
     };
 });
 
 directives.directive("note", function () {
     return {
+        restrict: "E",
         templateUrl: "note.html",
-        transclude: true
+        transclude: true,
+        scope: {
+            delNote: "=",
+            note: "=",
+            boardId:"="
+        }
     };
 });

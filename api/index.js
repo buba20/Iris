@@ -67,8 +67,16 @@ app.put("/api/note", jsonParser, function (req, res) {
         if (err) {
             return res.error(err);
         }
-
         res.json(note);
+    });
+});
+app.delete("/api/note/:boardId/:noteId",function (req, res) {
+    console.log(req.params.boardId, req.params.noteId);
+    noteController.deleteNote(req.params.boardId, req.params.noteId, function (err) {
+        if (err) {
+            return res.error(err);
+        }
+        res.end("OK");
     });
 });
 module.exports = function (portNumber) {
