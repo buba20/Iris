@@ -23,9 +23,29 @@ build/Release
 # Commenting this out is preferred by some people, see
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
 node_modules
+bower_components
 
 # Users Environment Variables
 .lock-wscript
 
 #WebStorm config dir
 .idea
+
+#Visual stutio code settings
+.settings
+
+#sublime IDE settings
+Iris.sublime-project
+Iris.sublime-workspace
+
+#Project exlude
+public/js/lib/angular
+public/js/lib/jquery
+public/js/lib/bootstrap
+public/js/lib/angularGridster
+
+public/css/bootstrap*.css
+public/css/bootstrap*.map
+public/css/angular-gridster.min.css
+
+public/fonts
