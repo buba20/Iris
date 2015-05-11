@@ -5,19 +5,17 @@
 
     <title>Iris - note manager</title>
 
-    <script type="text/javascript" src="js/lib/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="js/lib/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/lib/angular/angular.js"></script>
-    <script type="text/javascript" src="js/lib/angular/angular-route.min.js"></script>
-    <script type="text/javascript" src="js/lib/angularBootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script type="text/javascript" src="js/lib/angular/angular-gridster.min.js"></script>
+    <script type="text/javascript" src="scripts/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/lib/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="scripts/lib/angular/angular-route.min.js"></script>
+    <script type="text/javascript" src="scripts/lib/angularBootstrap/ui-bootstrap-tpls.min.js"></script>
 
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/angular-gridster.min.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="styles/bootstrap.min.css"/>
+    <link rel="stylesheet" href="styles/style.css"/>
 </head>
 
-<body ng-app="IrisApp">
+<body ng-app="irisApp">
 <!--Navigation menu-->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -41,7 +39,7 @@
 
 <!--alert-->
 <div id="alert">
-    <div ng-controller="AlertDemoCtrl" class="row">
+    <div ng-controller="AlertCtrl" class="row">
         <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
     </div>
 </div>
@@ -190,8 +188,26 @@
 </script>
 
 <!--app files -->
-<script src="js/app/services.js"></script>
-<script src="js/app/controllers.js"></script>
-<script src="js/app/app.js"></script>
+<!--services-->
+<script src="scripts/services/main.js"></script>
+<script src="scripts/services/urls.js"></script>
+<script src="scripts/services/board.js"></script>
+<script src="scripts/services/boarddelete.js"></script>
+<script src="scripts/services/region.js"></script>
+
+<!--controllers-->
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/alert.js"></script>
+<script src="scripts/controllers/board.js"></script>
+<script src="scripts/controllers/region.js"></script>
+<script src="scripts/controllers/modal.js"></script>
+
+<!--dorectives-->
+<script src="scripts/directives/main.js"></script>
+<script src="scripts/directives/region.js"></script>
+<script src="scripts/directives/delboardbtn.js"></script>
+<script src="scripts/directives/note.js"></script>
+
+<script src="scripts/app.js"></script>
 </body>
 </html>

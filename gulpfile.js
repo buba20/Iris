@@ -15,7 +15,7 @@ gulp.task("copyJquery",function(){
     gulp.src([
         "node_modules/jquery/dist/*.js",
         "node_modules/jquery/dist/*.map"
-    ]).pipe(gulp.dest("public/js/lib/jquery"));
+    ]).pipe(gulp.dest("public/scripts/lib/jquery"));
 });
 
 gulp.task("copyAngular", function () {
@@ -28,12 +28,12 @@ gulp.task("copyAngular", function () {
         "node_modules/angular-route/angular-route.min.js",
         "node_modules/angular-route/angular-route.min.js.map",
         "node_modules/angular-gridster/dist/angular-gridster.min.js"       
-    ]).pipe(gulp.dest("public/js/lib/angular"));
+    ]).pipe(gulp.dest("public/scripts/lib/angular"));
 
     //css files
     gulp.src([
         "node_modules/angular-gridster/dist/angular-gridster.min.css"
-    ]).pipe(gulp.dest("public/css"));
+    ]).pipe(gulp.dest("public/styles"));
 });
 
 gulp.task("copyBootstrap",function(){
@@ -41,11 +41,11 @@ gulp.task("copyBootstrap",function(){
 
     //copy js files
     gulp.src(pathBase+"/js/*js")
-       .pipe(gulp.dest("public/js/lib/bootstrap"));
+       .pipe(gulp.dest("public/scripts/lib/bootstrap"));
 
     //copy css files
     gulp.src([pathBase+"/css/*.css",pathBase+"/css/*.css.map"])
-        .pipe(gulp.dest("public/css"));
+        .pipe(gulp.dest("public/styles"));
 
     //copy fonts
     gulp.src(pathBase+"/fonts/*.*")
