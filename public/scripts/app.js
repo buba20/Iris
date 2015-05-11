@@ -3,10 +3,10 @@ angular.module("irisApp", ["ngRoute", "irisApp.Controllers", "irisApp.Directives
     .config(["$routeProvider", function ($routeProvider) {
         $routeProvider.when("/", {
             controller: "mainCtrl",
-            templateUrl: "home.html"
+            templateUrl: "templates/home.html"
         }).when("/board/:id", {
             controller: "boardController",
-            templateUrl: "board.html"
+            templateUrl: "templates/board.html"
         }).otherwise({
             redirectTo: "/"
         });

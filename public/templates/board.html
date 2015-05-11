@@ -1,0 +1,28 @@
+<div>
+    <form class="form-inline">
+        <div class="form-group">
+            <input required class="form-control" ng-model="board.title"/>
+            <button class="btn btn-warning" ng-click="updateBoard()"><span class="glyphicon glyphicon-edit"></span>
+                Update
+            </button>
+            <del-board-btn board-id="{{board._id}}"></del-board-btn>
+            <button class="btn btn-primary" ng-click="newRegion()">
+                <span class="glyphicon glyphicon-plus"></span>
+                Add region
+            </button>
+        </div>
+    </form>
+</div>
+</br>
+<div class="row">
+    <div ng-repeat="region in board.regions track by $index">
+        <region
+                region="region"
+                add-item="addItem"
+                board-id="board._id"
+                del-region="delRegion"
+                del-note="delNote"
+                ng-controller="regionController">
+        </region>
+    </div>
+</div>

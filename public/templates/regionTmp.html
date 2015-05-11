@@ -1,0 +1,36 @@
+<div class="col-md-6">
+    <div class="region panel panel-default">
+        <div class="panel-heading">
+            <span>{{region.title}}</span>
+            <a href="" ng-click="addItem(region,boardId)" tooltip="Add item" data-tooltip-placement="right"><span
+                    class="glyphicon glyphicon-plus-sign"></span></a>
+
+            <div class="pull-right">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                        Actions
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li>
+                            <a href="" ng-click="addItem(region,boardId)"><i class="glyphicon glyphicon-plus"></i>
+                                Add
+                                item</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="" ng-click="delRegion(region, boardId)"><i
+                                    class="glyphicon glyphicon-remove"></i>
+                                Delete</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div ng-repeat="note in region.notes">
+                <note del-note="delNote" board-id="boardId" note="note">{{note.content}}</note>
+            </div>
+        </div>
+    </div>
+</div>

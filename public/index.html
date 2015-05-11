@@ -17,175 +17,12 @@
 
 <body ng-app="irisApp">
 <!--Navigation menu-->
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#/">Iris</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-            </ul>
-        </div>
-        <!--/.nav-collapse -->
-    </div>
-</nav>
+<navigation></navigation>
 
 <!--alert-->
-<div id="alert">
-    <div ng-controller="AlertCtrl" class="row">
-        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-    </div>
-</div>
-
+<ialert></ialert>
 <!--main content-->
 <div class="container-fluid" ng-view></div>
-
-<!--Templates -->
-<script id="delBtnTmp.html" type="text/ng-template">
-    <button class="btn btn-danger">{{boardId}}<span class="glyphicon glyphicon-remove"></span> Delete
-    </button>
-</script>
-
-<script id="home.html" type="text/ng-template">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover ">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="board in boards">
-                        <td style="width: 57px">{{$index + 1}}</td>
-                        <td>
-                            <a href="#/board/{{board._id}}">{{board.title}}</a>
-                        </td>
-                        <td style="width: 57px">
-                            <a class="btn btn-primary" href="#/board/{{board._id}}">
-                                <span class="glyphicon glyphicon-edit"></span> Edit
-                            </a>
-                        </td>
-                        <td style="width: 57px">
-                            <del-board-btn board-id="{{board._id}}"></del-board-btn>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <button class="btn btn-primary" ng-click="newBoard()">New Board</button>
-        </div>
-    </div>
-</script>
-
-<script id="board.html" type="text/ng-template">
-    <div>
-        <form class="form-inline">
-            <div class="form-group">
-                <input required class="form-control" ng-model="board.title"/>
-                <button class="btn btn-warning" ng-click="updateBoard()"><span class="glyphicon glyphicon-edit"></span>
-                    Update
-                </button>
-                <del-board-btn board-id="{{board._id}}"></del-board-btn>
-                <button class="btn btn-primary" ng-click="newRegion()">
-                    <span class="glyphicon glyphicon-plus"></span>
-                    Add region
-                </button>
-            </div>
-        </form>
-    </div>
-    </br>
-    <div class="row">
-        <div ng-repeat="region in board.regions track by $index">
-            <region
-                    region="region"
-                    add-item="addItem"
-                    board-id="board._id"
-                    del-region="delRegion"
-                    del-note="delNote"
-                    ng-controller="regionController">
-            </region>
-        </div>
-    </div>
-</script>
-<script id="note.html" type="text/ng-template">
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="pull-right">
-                    <a href="" ng-click="delNote(boardId,note)">
-                        <i class="glyphicon glyphicon-remove" style="top:-8px;right: -11px"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="panel-body">
-
-            </div>
-        </div>
-    </div>
-</script>
-<script id="confirmDeleteModal.html" type="text/ng-template">
-    <div class="modal-header">
-        <h3 class="modal-title">Deleting board</h3>
-    </div>
-    <div class="modal-body">
-        Are you sure ?
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="yes()">Yes</button>
-        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-    </div>
-</script>
-
-<script type="text/ng-template" id="regionTmp.html">
-    <div class="col-md-6">
-        <div class="region panel panel-default">
-            <div class="panel-heading">
-                <span>{{region.title}}</span>
-                <a href="" ng-click="addItem(region,boardId)" tooltip="Add item" data-tooltip-placement="right"><span
-                        class="glyphicon glyphicon-plus-sign"></span></a>
-
-                <div class="pull-right">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                            Actions
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu pull-right" role="menu">
-                            <li>
-                                <a href="" ng-click="addItem(region,boardId)"><i class="glyphicon glyphicon-plus"></i>
-                                    Add
-                                    item</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="" ng-click="delRegion(region, boardId)"><i
-                                        class="glyphicon glyphicon-remove"></i>
-                                    Delete</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div ng-repeat="note in region.notes">
-                    <note del-note="delNote" board-id="boardId" note="note">{{note.content}}</note>
-                </div>
-            </div>
-        </div>
-    </div>
-</script>
 
 <!--app files -->
 <!--services-->
@@ -207,6 +44,8 @@
 <script src="scripts/directives/region.js"></script>
 <script src="scripts/directives/delboardbtn.js"></script>
 <script src="scripts/directives/note.js"></script>
+<script src="scripts/directives/navigation.js"></script>
+<script src="scripts/directives/ialert.js"></script>
 
 <script src="scripts/app.js"></script>
 </body>
