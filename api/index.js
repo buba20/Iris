@@ -28,13 +28,13 @@ app.get(/^\/api\/board\/([a-zA-Z0-9]{12}|[a-zA-Z0-9]{24})\/{0,1}$/, function (re
     });
 });
 
-app.put("/api/board/new", function (req, res) {
+app.put("/api/board/", function (req, res) {
     boardController.createNew(function (err, data) {
         res.json(data);
     });
 });
 
-app.post("/api/board", jsonParser, function (req, res) {
+app.post("/api/board/", jsonParser, function (req, res) {
     boardController.update(req.body, function (err, data) {
         if (err) {
             console.err(err);

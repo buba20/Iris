@@ -43,4 +43,8 @@ angular.module('irisApp.Services')
             update: update,
             delete: deleteBoard
         };
+    }]).service("BoardService2", ['$resource', function ($resource) {
+        return {
+            Board: $resource("/api/board/:boardId", {boardId: '@_id'},{'save':   {method:'PUT'}})
+        };
     }]);

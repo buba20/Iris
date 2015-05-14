@@ -29,7 +29,8 @@ gulp.task("copyAngular", function () {
         "node_modules/angular-route/angular-route.min.js.map",
         "node_modules/angularjs-toaster/toaster.min.js",
         "node_modules/angularjs-toaster/toaster.js",
-        "node_modules/angular-animate/angular-animate.min.js"
+        "node_modules/angular-animate/angular-animate.min.js",
+        "node_modules/ng-resource/lib/angular-resource.js"
     ]).pipe(gulp.dest("public/scripts/lib/angular"));
 
     //css files

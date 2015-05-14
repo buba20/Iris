@@ -1,5 +1,5 @@
 "use strict";
-angular.module("irisApp", ["ngRoute", "irisApp.Controllers", "irisApp.Directives", "ui.bootstrap","toaster"])
+angular.module("irisApp", ["ngRoute","ngResource", "irisApp.Controllers", "irisApp.Directives", "ui.bootstrap","toaster"])
     .config(["$routeProvider", function ($routeProvider) {
         $routeProvider.when("/", {
             controller: "mainCtrl",
