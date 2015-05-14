@@ -27,12 +27,14 @@ gulp.task("copyAngular", function () {
         "node_modules/angular-route/angular-route.js",
         "node_modules/angular-route/angular-route.min.js",
         "node_modules/angular-route/angular-route.min.js.map",
-        "node_modules/angular-gridster/dist/angular-gridster.min.js"       
+        "node_modules/angularjs-toaster/toaster.min.js",
+        "node_modules/angularjs-toaster/toaster.js",
+        "node_modules/angular-animate/angular-animate.min.js"
     ]).pipe(gulp.dest("public/scripts/lib/angular"));
 
     //css files
     gulp.src([
-        "node_modules/angular-gridster/dist/angular-gridster.min.css"
+        "node_modules/angularjs-toaster/toaster.css"
     ]).pipe(gulp.dest("public/styles"));
 });
 

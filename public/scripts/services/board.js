@@ -26,7 +26,7 @@ angular.module('irisApp.Services')
         }
 
         function update(board) {
-            $http.post(urls.boardUrl, board).error(function (data) {
+            return $http.post(urls.boardUrl, board).error(function (data) {
                 console.error(data);
             });
         }

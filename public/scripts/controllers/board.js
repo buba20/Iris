@@ -1,5 +1,5 @@
 angular.module("irisApp.Controllers")
-    .controller('boardController',["$scope", "$routeParams", "BoardService", "boardDelete", "regionService",function($scope, $routeParams, boardService, boardDelete, regionService){
+    .controller('boardController', ["$scope", "$routeParams", "BoardService", "boardDelete", "regionService", "notificationService", function ($scope, $routeParams, boardService, boardDelete, regionService, notificationService) {
 
         var id = $routeParams.id;
 
@@ -8,7 +8,10 @@ angular.module("irisApp.Controllers")
         });
 
         $scope.updateBoard = function () {
-            boardService.update($scope.board);
+            boardService.update($scope.board)
+                .success(function () {
+                    notificationService.show({msg:"Board saved",type:"success"});
+                });
         };
 
         $scope.deleteBoard = boardDelete.bind(this, id);

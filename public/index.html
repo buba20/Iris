@@ -10,19 +10,24 @@
     <script type="text/javascript" src="scripts/lib/angular/angular.js"></script>
     <script type="text/javascript" src="scripts/lib/angular/angular-route.min.js"></script>
     <script type="text/javascript" src="scripts/lib/angularBootstrap/ui-bootstrap-tpls.min.js"></script>
-
+    <script type="text/javascript" src="scripts/lib/angular/angular-animate.min.js"></script>
+    <script src="scripts/lib/angular/toaster.min.js"></script>
     <link rel="stylesheet" href="styles/bootstrap.min.css"/>
+    <link rel="stylesheet" href="styles/toaster.css"/>
     <link rel="stylesheet" href="styles/style.css"/>
 </head>
 
 <body ng-app="irisApp">
 <!--Navigation menu-->
 <navigation></navigation>
-
-<!--alert-->
-<ialert></ialert>
 <!--main content-->
-<div class="container-fluid" ng-view></div>
+<div class="container-fluid">
+
+    <!--alert-->
+    <toaster-container></toaster-container>
+
+    <div ng-view></div>
+</div>
 
 <!--app files -->
 <!--services-->
@@ -31,7 +36,7 @@
 <script src="scripts/services/board.js"></script>
 <script src="scripts/services/boarddelete.js"></script>
 <script src="scripts/services/region.js"></script>
-
+<script src="scripts/services/alert.js"></script>
 <!--controllers-->
 <script src="scripts/controllers/main.js"></script>
 <script src="scripts/controllers/alert.js"></script>
