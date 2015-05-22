@@ -8,7 +8,7 @@
  * Service in the irisApp.
  */
 angular.module('irisApp.Services')
-    .service('boardDelete', ["$modal", "$location", "BoardService", function ($modal, $location, boardService) {
+    .service('boardDelete', ["$modal", "$location", "boardService", function ($modal, $location, boardService) {
         return function (boardId) {
 
             $modal.open({

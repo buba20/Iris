@@ -1,5 +1,5 @@
 angular.module('irisApp.Controllers', ['irisApp.Services','ui.bootstrap'])
-    .controller("mainCtrl", ["$scope", "BoardService2", "$location", "$rootScope",
+    .controller("mainCtrl", ["$scope", "boardService", "$location", "$rootScope",
         function ($scope, service, $location, $rootScope) {
             $scope.boards = [];
 

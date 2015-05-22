@@ -34,6 +34,15 @@ app.put("/api/board/", function (req, res) {
     });
 });
 
+// Update board
+app.put("/api/board/:id", jsonParser ,function (req, res) {
+    var boardId = req.params.id;
+    boardController.update(req.body, function (err, data) {
+        res.json(data);
+    });
+});
+
+
 app.post("/api/board/", jsonParser, function (req, res) {
     boardController.update(req.body, function (err, data) {
         if (err) {

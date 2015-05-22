@@ -39,11 +39,12 @@ Iris.sublime-project
 Iris.sublime-workspace
 
 #Project exlude
-public/scripts/lib/angular
-public/scripts/lib/jquery
+dist
 public/scripts/lib/bootstrap
 public/scripts/lib/angularGridster
+public/scripts/lib/angular
 
+public/scripts/lib/jquery
 public/css/bootstrap*.css
 public/css/bootstrap*.map
 public/css/angular-gridster.min.css

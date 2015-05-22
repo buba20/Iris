@@ -7,7 +7,7 @@
  * # delBoardBtn
  */
 angular.module('irisApp.Directives')
-    .directive('delBoardBtn', ["$modal", "$location", "BoardService", function ($modal, $location, boardService) {
+    .directive('delBoardBtn', ["$modal", "$location", "boardService", function ($modal, $location, boardService) {
         return {
             restrict: "E",
             link: function (scope, element, attrs) {
